@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grammar version="1.0" xml:lang="en-us"
+         mode="voice"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         tag-format="semantics/1.0"
+         root="toplevel">
+
+  <rule id="toplevel">
+    <one-of>
+      <item>
+        <ruleref  uri="#playstate" />
+      </item>
+      <item>
+        <ruleref  uri="#movestate" />
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="playstate">
+    <one-of>
+      <item>
+        <tag>out.command="new";</tag>
+        <one-of>
+          <item>Play a new game</item>
+          <item>Start new game</item>
+          <item>Begin a new game</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>out.command="quit";</tag>
+        <one-of>
+          <item>quit this game</item>
+          <item>end game</item>
+          <item>game over</item>
+          <item>enough of this</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>out.command="pause";</tag>
+        <one-of>
+          <item>pause game</item>
+          <item>temporary stop</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>out.command="resume";</tag>
+        <one-of>
+          <item>resume game</item>
+          <item>continue game</item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="movestate">
+    <one-of>
+      <item>Draw</item>
+      <item>place</item>
+      <item>put</item>
+    </one-of>
+    <ruleref uri="#moveoptions" />
+    <tag>out.player = rules.latest(); </tag>
+    <item>in row</item>
+    <ruleref uri="#moveoptions" />
+    <tag>out.row = rules.latest(); </tag>
+    <one-of>
+      <item>col</item>
+      <item>column</item>
+    </one-of>
+    <ruleref uri="#moveoptions" />
+    <tag>out.col = rules.latest(); </tag>
+  </rule>
+
+  <rule id="moveoptions">
+    <one-of>
+      <item>
+        X <tag>out="X";</tag>
+      </item>
+      <item>
+        O <tag>out="O";</tag>
+      </item>
+      <item>
+        one <tag>out=1;</tag>
+      </item>
+      <item>
+        two <tag>out=2;</tag>
+      </item>
+      <item>
+        three <tag>out=3;</tag>
+      </item>
+    </one-of>
+  </rule>
+
+</grammar>
+

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\james\\source\\repos\\MediaPlayer\\MediaPlayer.csproj": {}
+    "C:\\Users\\james\\source\\repos\\GestureUIProject\\MediaPlayer\\MediaPlayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\james\\source\\repos\\MediaPlayer\\MediaPlayer.csproj": {
+    "C:\\Users\\james\\source\\repos\\GestureUIProject\\MediaPlayer\\MediaPlayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\james\\source\\repos\\MediaPlayer\\MediaPlayer.csproj",
+        "projectUniqueName": "C:\\Users\\james\\source\\repos\\GestureUIProject\\MediaPlayer\\MediaPlayer.csproj",
         "projectName": "MediaPlayer",
-        "projectPath": "C:\\Users\\james\\source\\repos\\MediaPlayer\\MediaPlayer.csproj",
+        "projectPath": "C:\\Users\\james\\source\\repos\\GestureUIProject\\MediaPlayer\\MediaPlayer.csproj",
         "packagesPath": "C:\\Users\\james\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\james\\source\\repos\\MediaPlayer\\obj\\",
+        "outputPath": "C:\\Users\\james\\source\\repos\\GestureUIProject\\MediaPlayer\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

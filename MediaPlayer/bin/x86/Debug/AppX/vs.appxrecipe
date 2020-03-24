@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>18772b16-6e96-4123-a01a-620ee01ce78e</PackageIdentityName>
     <PackageIdentityPublisher>CN=james</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\james\source\repos\MediaPlayer\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>A48B526B7E4F3A604185516E308F14394D21364CA889EDDCD72BE04E2D1CC2A4</RegisteredManifestChecksum>
+    <LayoutDir>C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>BF5FDB7FB06F4B282A49AE4B7DA06BFD79559653500470658D0D1ECAE806BD4A</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>18772b16-6e96-4123-a01a-620ee01ce78e_1.0.0.0_x86__bme28qw9yyzpj</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>18772b16-6e96-4123-a01a-620ee01ce78e_bme28qw9yyzpj!App</RegisteredUserModeAppID>
     <RegisteredPackageID>18772b16-6e96-4123-a01a-620ee01ce78e</RegisteredPackageID>
@@ -27,16 +27,16 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-03-24T17:17:37.550</Modified>
+      <Modified>2020-03-24T21:13:14.104</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\MediaPlayer.exe">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.exe">
       <PackagePath>entrypoint\MediaPlayer.exe</PackagePath>
-      <Modified>2020-03-24T17:17:36.642</Modified>
+      <Modified>2020-03-24T21:13:13.663</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.9\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -46,67 +46,71 @@
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2019-03-18T17:36:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\grammar.xml">
+      <PackagePath>grammar.xml</PackagePath>
+      <Modified>2020-03-24T21:09:25.598</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2020-03-24T14:37:26.644</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2020-01-30T13:50:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\MediaPlayer.xr.xml">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.xr.xml">
       <PackagePath>MediaPlayer.xr.xml</PackagePath>
-      <Modified>2020-03-24T17:17:36.393</Modified>
+      <Modified>2020-03-24T20:50:36.106</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-03-24T17:17:36.414</Modified>
+      <Modified>2020-03-24T21:13:13.496</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-03-24T17:17:36.414</Modified>
+      <Modified>2020-03-24T21:13:13.496</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2019-03-18T16:33:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-03-24T15:33:44.867</Modified>
+      <Modified>2020-03-24T20:00:57.544</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\MediaPlayer\bin\x86\Debug\Core\MediaPlayer.exe">
+    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\MediaPlayer.exe">
       <PackagePath>MediaPlayer.exe</PackagePath>
-      <Modified>2020-03-24T17:17:37.536</Modified>
+      <Modified>2020-03-24T21:13:14.099</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

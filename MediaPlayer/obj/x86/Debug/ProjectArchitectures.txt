@@ -1,1 +1,1 @@
-C:\Users\james\source\repos\MediaPlayer\MediaPlayer.csproj;x86
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\MediaPlayer.csproj;x86
