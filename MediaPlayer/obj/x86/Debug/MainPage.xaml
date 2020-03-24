@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="MediaPlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Grid>
+        <MediaPlayerElement x:ConnectionId='2' x:Name="mediaSimple"
+                    Source="ms-appx:///Videos/video1.mp4"
+                    Width="800" AutoPlay="True"/>
+        
+        <MediaPlayerElement x:ConnectionId='3' x:Name="mediaPlayer"
+                    Source="ms-appx:///Videos/video1.mp4"
+                    Width="800"
+                    AutoPlay="False"
+                    AreTransportControlsEnabled="True"/>
+        
+        <Button x:ConnectionId='4' Content="Choose file"                     />
+    </Grid>
+    
+</Page>
+
