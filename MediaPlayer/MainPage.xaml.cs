@@ -16,6 +16,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.Media.Capture;
+using Windows.Media.FaceAnalysis;
+using Windows.Media.MediaProperties;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Shapes;
+using Windows.UI;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace MediaPlayer
@@ -25,6 +31,62 @@ namespace MediaPlayer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        private FaceDetectionEffect _faceDetectionEffect;
+        private MediaCapture _mediaCapture;
+        private IMediaEncodingProperties _previewProperties;
+
+        private async void btnCamera_Click(object sender, RoutedEventArgs e)
+        {
+            _mediaCapture = new MediaCapture();
+            await _mediaCapture.InitializeAsync();
+            cePreview.Source = _mediaCapture;
+            await _mediaCapture.StartPreviewAsync();
+        }
+
+        private async void btnDetectFaces_Click(object sender, RoutedEventArgs e)
+        {
+            var faceDetectionDefinition = new FaceDetectionEffectDefinition();
+            faceDetectionDefinition.DetectionMode = FaceDetectionMode.HighPerformance;
+            faceDetectionDefinition.SynchronousDetectionEnabled = false;
+            _faceDetectionEffect = (FaceDetectionEffect)await
+            _mediaCapture.AddVideoEffectAsync(faceDetectionDefinition,
+              MediaStreamType.VideoPreview);
+            _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
+            _faceDetectionEffect.DesiredDetectionInterval = TimeSpan.FromMilliseconds(33);
+            _faceDetectionEffect.Enabled = true;
+        }
+
+        private async void FaceDetectionEffect_FaceDetected(
+            FaceDetectionEffect sender, FaceDetectedEventArgs args)
+        {
+            var detectedFaces = args.ResultFrame.DetectedFaces;
+            await Dispatcher
+              .RunAsync(CoreDispatcherPriority.Normal,
+                () => DrawFaceBoxes(detectedFaces));
+        }
+
+        private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
+        {
+            cvsFaceOverlay.Children.Clear();
+            for (int i = 0; i < detectedFaces.Count; i++)
+            {
+                var face = detectedFaces[i];
+                var faceBounds = face.FaceBox;
+                Rectangle faceHighlightRectangle = new Rectangle()
+                {
+                    Height = faceBounds.Height,
+                    Width = faceBounds.Width
+                };
+                Canvas.SetLeft(faceHighlightRectangle, faceBounds.X);
+                Canvas.SetTop(faceHighlightRectangle, faceBounds.Y);
+                faceHighlightRectangle.StrokeThickness = 2;
+                faceHighlightRectangle.Stroke = new SolidColorBrush(Colors.Red);
+                cvsFaceOverlay.Children.Add(faceHighlightRectangle);
+            }
+        }
+
+
         private SpeechRecognizer speechRecognizer;
 
         private string Player;

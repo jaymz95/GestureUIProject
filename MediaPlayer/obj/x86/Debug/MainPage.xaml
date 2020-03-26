@@ -9,18 +9,32 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid>
-        <MediaPlayerElement x:ConnectionId='2' x:Name="mediaSimple"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="320*"/>
+            <RowDefinition Height="389*"/>
+        </Grid.RowDefinitions>
+        <CaptureElement x:ConnectionId='2' Name="cePreview" Stretch="Uniform" Grid.Row="0" />
+        <Canvas x:ConnectionId='3' x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5">
+            <Button x:ConnectionId='7' x:Name="btnCamera"                         >Turn on Camera</Button>
+            <Button x:ConnectionId='8' x:Name="btnDetectFaces"                              >Detect
+                Faces</Button>
+        </StackPanel>
+
+        <MediaPlayerElement x:ConnectionId='4' x:Name="mediaSimple"
                     Source="ms-appx:///Videos/video1.mp4"
                     Width="800" AutoPlay="True"/>
         
-        <MediaPlayerElement x:ConnectionId='3' x:Name="mediaPlayer"
+        <MediaPlayerElement x:ConnectionId='5' x:Name="mediaPlayer"
                     Source="ms-appx:///Videos/video1.mp4"
                     Width="800"
                     AutoPlay="False"
                     AreTransportControlsEnabled="True"/>
         
-        <Button x:ConnectionId='4' Content="Choose file"                     />
+        <Button x:ConnectionId='6' Content="Choose file"                     />
+
     </Grid>
     
 </Page>
