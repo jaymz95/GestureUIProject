@@ -49,9 +49,10 @@ namespace MediaPlayer
             await _mediaCapture.InitializeAsync();
             cePreview.Source = _mediaCapture;
             await _mediaCapture.StartPreviewAsync();
+            detectFaces_Click(sender, e);
         }
 
-        private async void btnDetectFaces_Click(object sender, RoutedEventArgs e)
+        private async void detectFaces_Click(object sender, RoutedEventArgs e)
         {
             var faceDetectionDefinition = new FaceDetectionEffectDefinition();
             faceDetectionDefinition.DetectionMode = FaceDetectionMode.HighPerformance;

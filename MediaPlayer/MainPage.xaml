@@ -15,14 +15,13 @@
             <RowDefinition Height="320*"/>
             <RowDefinition Height="100*"/>
             <RowDefinition Height="389*"/>
+            <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
         
         <CaptureElement Name="cePreview" Stretch="Uniform" Grid.Row="0" />
         <Canvas x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5">
             <Button x:Name="btnCamera" Click="btnCamera_Click" >Turn on Camera</Button>
-            <Button x:Name="btnDetectFaces" Click="btnDetectFaces_Click" >Detect
-                Faces</Button>
         </StackPanel>
 
         <MediaPlayerElement x:Name="mediaSimple"
@@ -31,11 +30,10 @@
         
         <MediaPlayerElement x:Name="mediaPlayer"
                     Source="ms-appx:///Videos/video1.mp4"
-                    Width="800"
                     AutoPlay="False"
                     AreTransportControlsEnabled="True" Grid.Row="2" />
 
-        <Button Content="Choose file" Click="Button_Click" Grid.Row="2" />
+        <Button Content="Choose file" Click="Button_Click" Grid.Row="3" HorizontalAlignment="Center" />
 
     </Grid>
     
