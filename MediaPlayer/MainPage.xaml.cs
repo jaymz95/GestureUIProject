@@ -22,7 +22,12 @@ using Windows.Media.MediaProperties;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
+using Windows.Graphics.Imaging;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+
+using System.Windows.Input;
+using System.Diagnostics;
+using Windows.Media.Playback;
 
 namespace MediaPlayer
 {
@@ -35,6 +40,8 @@ namespace MediaPlayer
         private FaceDetectionEffect _faceDetectionEffect;
         private MediaCapture _mediaCapture;
         private IMediaEncodingProperties _previewProperties;
+        //public var file;#
+        private IStorageFile file;
 
         private async void btnCamera_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +68,7 @@ namespace MediaPlayer
             FaceDetectionEffect sender, FaceDetectedEventArgs args)
         {
             var detectedFaces = args.ResultFrame.DetectedFaces;
+
             await Dispatcher
               .RunAsync(CoreDispatcherPriority.Normal,
                 () => DrawFaceBoxes(detectedFaces));
@@ -69,9 +77,26 @@ namespace MediaPlayer
         private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
         {
             cvsFaceOverlay.Children.Clear();
+
+
+            //MediaPlaybackSession playbackSession = sender as MediaPlaybackSession;
+            Debug.WriteLine(detectedFaces.Count);
+            if (file != null)
+            {
+                if (detectedFaces.Count <= 0)
+                {
+                    mediaPlayer.MediaPlayer.Pause();
+                }
+                else if (detectedFaces.Count > 0)
+                {
+                    mediaPlayer.MediaPlayer.Play();
+                }
+            }
+
             for (int i = 0; i < detectedFaces.Count; i++)
             {
                 var face = detectedFaces[i];
+
                 var faceBounds = face.FaceBox;
                 Rectangle faceHighlightRectangle = new Rectangle()
                 {
@@ -84,6 +109,55 @@ namespace MediaPlayer
                 faceHighlightRectangle.Stroke = new SolidColorBrush(Colors.Red);
                 cvsFaceOverlay.Children.Add(faceHighlightRectangle);
             }
+        }
+
+        private Rectangle MapRectangleToDetectedFace(BitmapBounds detectedfaceBoxCoordinates)
+        {
+            var faceRectangle = new Rectangle();
+            var previewStreamPropterties =
+              _previewProperties as VideoEncodingProperties;
+            double mediaStreamWidth = previewStreamPropterties.Width;
+            double mediaStreamHeight = previewStreamPropterties.Height;
+            var faceHighlightRect = LocatePreviewStreamCoordinates(previewStreamPropterties,
+              this.cePreview);
+            faceRectangle.Width = (detectedfaceBoxCoordinates.Width / mediaStreamWidth) *
+              faceHighlightRect.Width;
+            faceRectangle.Height = (detectedfaceBoxCoordinates.Height / mediaStreamHeight) *
+              faceHighlightRect.Height;
+            var x = (detectedfaceBoxCoordinates.X / mediaStreamWidth) *
+              faceHighlightRect.Width;
+            var y = (detectedfaceBoxCoordinates.Y / mediaStreamHeight) *
+              faceHighlightRect.Height;
+            Canvas.SetLeft(faceRectangle, x);
+            Canvas.SetTop(faceRectangle, y);
+            return faceRectangle;
+        }
+        public Rect LocatePreviewStreamCoordinates(
+          VideoEncodingProperties previewResolution,
+          CaptureElement previewControl)
+        {
+            var uiRectangle = new Rect();
+            var mediaStreamWidth = previewResolution.Width;
+            var mediaStreamHeight = previewResolution.Height;
+            uiRectangle.Width = previewControl.ActualWidth;
+            uiRectangle.Height = previewControl.ActualHeight;
+            var uiRatio = previewControl.ActualWidth / previewControl.ActualHeight;
+            var mediaStreamRatio = mediaStreamWidth / mediaStreamHeight;
+            if (uiRatio > mediaStreamRatio)
+            {
+                var scaleFactor = previewControl.ActualHeight / mediaStreamHeight;
+                var scaledWidth = mediaStreamWidth * scaleFactor;
+                uiRectangle.X = (previewControl.ActualWidth - scaledWidth) / 2.0;
+                uiRectangle.Width = scaledWidth;
+            }
+            else
+            {
+                var scaleFactor = previewControl.ActualWidth / mediaStreamWidth;
+                var scaledHeight = mediaStreamHeight * scaleFactor;
+                uiRectangle.Y = (previewControl.ActualHeight - scaledHeight) / 2.0;
+                uiRectangle.Height = scaledHeight;
+            }
+            return uiRectangle;
         }
 
 
@@ -118,7 +192,7 @@ namespace MediaPlayer
             openPicker.FileTypeFilter.Add(".mkv");
             openPicker.FileTypeFilter.Add(".avi");
 
-            var file = await openPicker.PickSingleFileAsync();
+            file = await openPicker.PickSingleFileAsync();
 
             // mediaPlayer is a MediaPlayerElement defined in XAML
             if (file != null)
@@ -128,6 +202,8 @@ namespace MediaPlayer
                 mediaPlayer.MediaPlayer.Play();
             }
         }
+
+        // Play the media.
 
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
