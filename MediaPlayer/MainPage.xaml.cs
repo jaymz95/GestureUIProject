@@ -1,33 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Media.Core;
-using Windows.Media.SpeechRecognition;
-using Windows.Storage;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-using Windows.Media.Capture;
-using Windows.Media.FaceAnalysis;
-using Windows.Media.MediaProperties;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Shapes;
-using Windows.UI;
-using Windows.Graphics.Imaging;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-using System.Windows.Input;
 using System.Diagnostics;
-using Windows.Media.Playback;
+using System.Linq;
+using Windows.Foundation;
+using Windows.Graphics.Imaging;
+using Windows.Media.Capture;
+using Windows.Media.Core;
+using Windows.Media.FaceAnalysis;
+using Windows.Media.MediaProperties;
+using Windows.Media.SpeechRecognition;
+using Windows.Storage;
+using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
 
 namespace MediaPlayer
 {
@@ -42,6 +32,9 @@ namespace MediaPlayer
         private IMediaEncodingProperties _previewProperties;
         //public var file;#
         private IStorageFile file;
+        private bool pauseButton = false;
+        private bool pauseCommand = false;
+        private bool playCommand = false;
 
         private async void btnCamera_Click(object sender, RoutedEventArgs e)
         {
@@ -84,11 +77,18 @@ namespace MediaPlayer
             Debug.WriteLine(detectedFaces.Count);
             if (file != null)
             {
-                if (detectedFaces.Count <= 0)
+                if (detectedFaces.Count <= 0 || playCommand == false)// && mediaPlayer.MediaPlayer.CurrentStateChanged += MediaElementState.Paused)
                 {
-                    mediaPlayer.MediaPlayer.Pause();
+                    if(playCommand == true && detectedFaces.Count <= 0)
+                    {
+                        mediaPlayer.MediaPlayer.Play();
+                    }
+                    else
+                    {
+                        mediaPlayer.MediaPlayer.Pause();
+                    }
                 }
-                else if (detectedFaces.Count > 0)
+                else if (detectedFaces.Count > 0 && pauseCommand == false)
                 {
                     mediaPlayer.MediaPlayer.Play();
                 }
@@ -201,6 +201,7 @@ namespace MediaPlayer
                 mediaPlayer.Source = MediaSource.CreateFromStorageFile(file);
 
                 mediaPlayer.MediaPlayer.Play();
+
             }
         }
 
@@ -240,7 +241,8 @@ namespace MediaPlayer
                     // set up a dictionary of string/Action pairs
                     string myCommand = "No command found";
                     if ((srr.Confidence == SpeechRecognitionConfidence.High) ||
-                        (srr.Confidence == SpeechRecognitionConfidence.Medium))
+                        (srr.Confidence == SpeechRecognitionConfidence.Medium) ||
+                        (srr.Confidence == SpeechRecognitionConfidence.Low))
                     {
                         IReadOnlyList<string> myCommands;
                         if (srr.SemanticInterpretation.Properties.TryGetValue(
@@ -248,6 +250,18 @@ namespace MediaPlayer
                                     out myCommands) == true)
                         {
                             myCommand = "Command: " + myCommands.FirstOrDefault();
+                            if (myCommands.FirstOrDefault() == "play")
+                            {
+                                mediaPlayer.MediaPlayer.Play();
+                                playCommand = true;
+                                pauseCommand = false;
+                            }
+                            else if (myCommands.FirstOrDefault() == "pause")
+                            {
+                                mediaPlayer.MediaPlayer.Pause();
+                                pauseCommand = true;
+                                playCommand = false;
+                            }
                         }
                         if (srr.SemanticInterpretation.Properties.TryGetValue(
                                     "player",

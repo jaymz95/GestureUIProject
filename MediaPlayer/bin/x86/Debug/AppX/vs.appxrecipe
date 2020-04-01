@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-03-27T17:14:22.527</Modified>
+      <Modified>2020-04-01T19:03:56.813</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.exe">
       <PackagePath>entrypoint\MediaPlayer.exe</PackagePath>
-      <Modified>2020-03-27T17:14:21.673</Modified>
+      <Modified>2020-04-01T19:03:56.202</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.9\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -48,7 +48,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\grammar.xml">
       <PackagePath>grammar.xml</PackagePath>
-      <Modified>2020-03-24T21:09:25.598</Modified>
+      <Modified>2020-03-28T13:24:36.470</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -94,11 +94,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-03-27T15:41:10.557</Modified>
+      <Modified>2020-04-01T18:59:45.168</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-03-27T17:14:21.364</Modified>
+      <Modified>2020-04-01T18:59:45.168</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -110,7 +110,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\MediaPlayer.exe">
       <PackagePath>MediaPlayer.exe</PackagePath>
-      <Modified>2020-03-27T17:14:22.512</Modified>
+      <Modified>2020-04-01T19:03:56.808</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

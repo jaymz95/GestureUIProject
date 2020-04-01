@@ -19,11 +19,33 @@
   <rule id="playstate">
     <one-of>
       <item>
-        <tag>out.command="new";</tag>
+        <tag>out.command="play";</tag>
         <one-of>
-          <item>Play a new game</item>
-          <item>Start new game</item>
-          <item>Begin a new game</item>
+          <item>Play</item>
+          <item>Play Movie</item>
+          <item>Start</item>
+          <item>Start Movie</item>
+          <item>Begin</item>
+          <item>Begin Movie</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>out.command="pause";</tag>
+        <one-of>
+          <item>Pause</item>
+          <item>Pause Movie</item>
+          <item>Pause Program</item>
+          <item>Pause Video</item>
+          <item>Stop</item>
+          <item>Stop Movie</item>
+          <item>Stop Program</item>
+          <item>Stop Video</item>
+        </one-of>
+      </item>
+      <item>
+        <tag>out.command="fastForward";</tag>
+        <one-of>
+          <item>Fast Foward</item>
         </one-of>
       </item>
       <item>
