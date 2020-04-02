@@ -36,6 +36,7 @@ namespace MediaPlayer
         private bool pauseButton = false;
         private bool pauseCommand = false;
         private bool playCommand = false;
+        private bool voicePause = false;
         private static int stateChange = 0;
 
         // Create a timer and set a two second interval.
@@ -108,7 +109,7 @@ namespace MediaPlayer
                 }
                 counter = 0;
             }
-            Debug.WriteLine(counter);
+            //Debug.WriteLine(counter);
         }
 
 
@@ -123,16 +124,22 @@ namespace MediaPlayer
             //Debug.WriteLine(detectedFaces.Count);
             if (file != null)
             {
-                if ((detectedFaces.Count <= 0 && playCommand == true) || playCommand == false)// && mediaPlayer.MediaPlayer.CurrentStateChanged += MediaElementState.Paused)
+                if (detectedFaces.Count <= 0 && playCommand == true)// && mediaPlayer.MediaPlayer.CurrentStateChanged += MediaElementState.Paused)
                 {
                     mediaPlayer.MediaPlayer.Pause();
+                    pauseCommand = true;
+                    playCommand = false;
                     stateChange++;
+                    Debug.WriteLine(stateChange);
 
                 }
-                else if (detectedFaces.Count > 0 && pauseCommand == false)
+                else if (detectedFaces.Count > 0 && playCommand == false && voicePause == false)
                 {
                     mediaPlayer.MediaPlayer.Play();
+                    playCommand = true;
+                    pauseCommand = false;
                     stateChange++;
+                    Debug.WriteLine(stateChange);
                 }
             }
 
@@ -296,15 +303,19 @@ namespace MediaPlayer
                             {
                                 mediaPlayer.MediaPlayer.Play();
                                 stateChange++;
+                                Debug.WriteLine(stateChange);
                                 playCommand = true;
                                 pauseCommand = false;
+                                voicePause = false;
                             }
                             else if (myCommands.FirstOrDefault() == "pause")
                             {
                                 mediaPlayer.MediaPlayer.Pause();
                                 stateChange++;
+                                Debug.WriteLine(stateChange);
                                 pauseCommand = true;
                                 playCommand = false;
+                                voicePause = true;
                             }
                         }
                         if (srr.SemanticInterpretation.Properties.TryGetValue(
