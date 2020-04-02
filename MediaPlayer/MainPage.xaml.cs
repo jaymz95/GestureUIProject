@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using System.Diagnostics;
 using System.Linq;
+using System.Timers;
 using Windows.Foundation;
 using Windows.Graphics.Imaging;
 using Windows.Media.Capture;
@@ -35,6 +36,12 @@ namespace MediaPlayer
         private bool pauseButton = false;
         private bool pauseCommand = false;
         private bool playCommand = false;
+        private static int stateChange = 0;
+
+        // Create a timer and set a two second interval.
+        private static Timer aTimer = new System.Timers.Timer();
+        private static int counter = 0;
+        
 
         private async void btnCamera_Click(object sender, RoutedEventArgs e)
         {
@@ -43,6 +50,7 @@ namespace MediaPlayer
             cePreview.Source = _mediaCapture;
             await _mediaCapture.StartPreviewAsync();
             detectFaces_Click(sender, e);
+            timedCommands();
         }
 
         private async void detectFaces_Click(object sender, RoutedEventArgs e)
@@ -68,70 +76,63 @@ namespace MediaPlayer
                 () => DrawFaceBoxes(detectedFaces));
         }
 
-        //**********************************************************************************************************************
-        static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-        static int alarmCounter = 1;
-        static bool exitFlag = false;
 
-        // This is the method to run when the timer is raised.
-        private static void TimerEventProcessor(Object myObject,
-                                                EventArgs myEventArgs)
+        public static void timedCommands()
         {
-            myTimer.Stop();
 
-            // Displays a message box asking whether to continue running the timer.
-            if (MessageBox.Show("Continue running?", "Count is: " + alarmCounter,
-               MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                // Restarts the timer and increments the counter.
-                alarmCounter += 1;
-                myTimer.Enabled = true;
-            }
-            else
-            {
-                // Stops the timer.
-                exitFlag = true;
-            }
+            aTimer.Interval = 1000;
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += OnTimedEvent;
+
+            // Have the timer fire repeated events (true is the default)
+            aTimer.AutoReset = true;
+
+            // Start the timer
+            aTimer.Enabled = true;
+
+            Console.WriteLine("Press the Enter key to exit the program at any time... ");
+            Console.ReadLine();
         }
 
-        public static int Main()
+        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            /* Adds the event and the event handler for the method that will 
-               process the timer event to the timer. */
-            myTimer.Tick += new EventHandler(TimerEventProcessor);
-
-            // Sets the timer interval to 5 seconds.
-            myTimer.Interval = 5000;
-            myTimer.Start();
-
-            // Runs the timer, and raises the event.
-            while (exitFlag == false)
+            Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
+            counter++;
+            if (counter == 30)
             {
-                // Processes all the events in the queue.
-                Application.DoEvents();
+                //or whatever your limit is
+                if (stateChange >= 5)
+                {
+                    // output assistant message
+                    Debug.WriteLine("ERRRRRRRRRRRROOOORRRRRRRRRRRRRRRRRRR");
+                }
+                counter = 0;
             }
-            return 0;
+            Debug.WriteLine(counter);
         }
 
-        //*******************************************************
+
 
         private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
         {
             cvsFaceOverlay.Children.Clear();
 
 
+
             //MediaPlaybackSession playbackSession = sender as MediaPlaybackSession;
-            Debug.WriteLine(detectedFaces.Count);
+            //Debug.WriteLine(detectedFaces.Count);
             if (file != null)
             {
                 if ((detectedFaces.Count <= 0 && playCommand == true) || playCommand == false)// && mediaPlayer.MediaPlayer.CurrentStateChanged += MediaElementState.Paused)
                 {
                     mediaPlayer.MediaPlayer.Pause();
-                    
+                    stateChange++;
+
                 }
                 else if (detectedFaces.Count > 0 && pauseCommand == false)
                 {
                     mediaPlayer.MediaPlayer.Play();
+                    stateChange++;
                 }
             }
 
@@ -294,12 +295,14 @@ namespace MediaPlayer
                             if (myCommands.FirstOrDefault() == "play")
                             {
                                 mediaPlayer.MediaPlayer.Play();
+                                stateChange++;
                                 playCommand = true;
                                 pauseCommand = false;
                             }
                             else if (myCommands.FirstOrDefault() == "pause")
                             {
                                 mediaPlayer.MediaPlayer.Pause();
+                                stateChange++;
                                 pauseCommand = true;
                                 playCommand = false;
                             }
