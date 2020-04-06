@@ -86,3 +86,8 @@ C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\MultipleQ
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636885274160000000.json
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\MediaPlayer.csprojAssemblyReference.cache
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Voice.xbf
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.g.i.cs
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.g.cs
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.xaml
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.xbf

@@ -12,6 +12,7 @@ using Windows.Media.Core;
 using Windows.Media.FaceAnalysis;
 using Windows.Media.MediaProperties;
 using Windows.Media.SpeechRecognition;
+using Windows.Media.SpeechSynthesis;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
@@ -19,6 +20,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+
+
 
 namespace MediaPlayer
 {
@@ -42,7 +45,9 @@ namespace MediaPlayer
         // Create a timer and set a two second interval.
         private static Timer aTimer = new System.Timers.Timer();
         private static int counter = 0;
-        
+        private static SpeechSynthesizer synthesizer;
+        private static SpeechSynthesisStream synthesisStream;
+
 
         private async void btnCamera_Click(object sender, RoutedEventArgs e)
         {
@@ -95,30 +100,68 @@ namespace MediaPlayer
             Console.ReadLine();
         }
 
-        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private async static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
             counter++;
             if (counter == 30)
             {
-                //or whatever your limit is
+                // or whatever your limit is
                 if (stateChange >= 5)
                 {
                     // output assistant message
                     Debug.WriteLine("ERRRRRRRRRRRROOOORRRRRRRRRRRRRRRRRRR");
+                    // The media object for controlling and playing audio.
+
+                    synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+
+                    // Create a stream from the text. This will be played using a media element.
+                    synthesisStream = await synthesizer.SynthesizeTextToStreamAsync("stop stop stop");
+
+                    //MediaElement media = ;
+                    // Set the source and start playing the synthesized audio stream.
+
+                    //var result = AsyncContext.Run(jjAsync);
+                    //jjAsync();
+                    //synthesizer.SetOutputToDefaultAudioDevice();
+                    //synthesizer.SynthesizeTextToStreamAsync("stop stop stop");
+
+                    MainPage foo = new MainPage();
+                    foo.jjAsync();
+                    //MediaElement media = ;
+                    // Set the source and start playing the synthesized audio stream.
+                    //media.AutoPlay = true;
+                    //media.SetSource(synthesisStream, synthesisStream.ContentType);
+                    //media.Play();
+
+                    //MainPage frm1 = new MainPage();
+                    //frm1.jjAsync();
+
                 }
                 counter = 0;
             }
             //Debug.WriteLine(counter);
         }
 
+        private void jjAsync()
+        {
+            //var synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+
+            // Create a stream from the text. This will be played using a media element.
+            //SpeechSynthesisStream synthesisStream = await synthesizer.SynthesizeTextToStreamAsync("stop stop stop");
+
+            //MediaElement media = ;
+            // Set the source and start playing the synthesized audio stream.
+            media.AutoPlay = true;
+            media.SetSource(synthesisStream, synthesisStream.ContentType);
+            media.Play();
+        }
 
 
-        private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
+
+            private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
         {
             cvsFaceOverlay.Children.Clear();
-
-
 
             //MediaPlaybackSession playbackSession = sender as MediaPlaybackSession;
             //Debug.WriteLine(detectedFaces.Count);

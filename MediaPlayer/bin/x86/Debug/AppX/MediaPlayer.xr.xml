@@ -17,6 +17,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MediaElement" />
     <RootType FullName="Windows.UI.Xaml.Controls.CaptureElement">
       <RootProperty Name="Name" />
       <RootProperty Name="Stretch" />
@@ -39,5 +40,6 @@
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="MediaPlayer.MainPage" />
+    <RootType FullName="MediaPlayer.Voice" />
   </Roots.RootTypes>
 </Roots>
