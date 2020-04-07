@@ -91,3 +91,11 @@ C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.g.i
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.g.cs
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.xaml
 C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\Voice.xbf
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\CommonServiceLocator.dll
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.dll
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\james\source\repos\GestureUIProject\MediaPlayer\obj\x86\Debug\GalaSoft.MvvmLight.Platform.pri.xml

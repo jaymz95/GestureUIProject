@@ -30,13 +30,29 @@
     <AppXManifest Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-04-06T11:53:10.163</Modified>
+      <Modified>2020-04-07T08:53:29.602</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.exe">
       <PackagePath>entrypoint\MediaPlayer.exe</PackagePath>
-      <Modified>2020-04-06T11:53:09.012</Modified>
+      <Modified>2020-04-07T08:53:28.917</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\james\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
+      <PackagePath>CommonServiceLocator.dll</PackagePath>
+      <Modified>2018-01-03T12:27:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\james\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Extras.dll">
+      <PackagePath>GalaSoft.MvvmLight.Extras.dll</PackagePath>
+      <Modified>2018-02-04T23:10:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\james\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.Platform.dll">
+      <PackagePath>GalaSoft.MvvmLight.Platform.dll</PackagePath>
+      <Modified>2018-02-04T23:10:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\james\.nuget\packages\mvvmlightlibs\5.4.1.1\lib\uap10.0\GalaSoft.MvvmLight.dll">
+      <PackagePath>GalaSoft.MvvmLight.dll</PackagePath>
+      <Modified>2018-02-04T23:10:46.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.9\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -94,15 +110,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-04-06T11:53:08.777</Modified>
+      <Modified>2020-04-07T08:52:03.826</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-04-06T11:53:08.777</Modified>
+      <Modified>2020-04-07T08:52:03.826</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Voice.xbf">
       <PackagePath>Voice.xbf</PackagePath>
-      <Modified>2020-04-06T11:53:08.778</Modified>
+      <Modified>2020-04-07T08:52:03.827</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -110,11 +126,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-04-06T11:53:09.434</Modified>
+      <Modified>2020-04-06T14:26:52.131</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\MediaPlayer.exe">
       <PackagePath>MediaPlayer.exe</PackagePath>
-      <Modified>2020-04-06T11:53:10.151</Modified>
+      <Modified>2020-04-07T08:53:29.598</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,7 @@
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement x:ConnectionId='2' x:Name="media">
+        <MediaElement x:ConnectionId='2' x:Name="media" x:FieldModifier="Public">
             
         </MediaElement>
 
