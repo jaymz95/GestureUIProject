@@ -23,8 +23,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-
-
 namespace MediaPlayer
 {
     /// <summary>
@@ -50,6 +48,7 @@ namespace MediaPlayer
 
         // Create a timer and set a two second interval.
         private static Timer aTimer = new System.Timers.Timer();
+        private static Timer bTimer = new System.Timers.Timer();
         private static int counter = 0;
         private static SpeechSynthesizer synthesizer;
         private static SpeechSynthesisStream synthesisStream;
@@ -110,7 +109,6 @@ namespace MediaPlayer
               .RunAsync(CoreDispatcherPriority.Normal,
                 () => DrawFaceBoxes(detectedFaces));
         }
-
 
         public static void timedCommands()
         {
@@ -176,6 +174,7 @@ namespace MediaPlayer
                     mediaPlayer.MediaPlayer.Pause();
                     pauseCommand = true;
                     playCommand = false;
+                    fastStop = true;
                     stateChange++;
                     Debug.WriteLine("stateChange: " + stateChange);
 
@@ -185,6 +184,7 @@ namespace MediaPlayer
                     mediaPlayer.MediaPlayer.Play();
                     playCommand = true;
                     pauseCommand = false;
+                    fastStop = true;
                     stateChange++;
                     Debug.WriteLine("stateChange: " + stateChange);
                 }
@@ -247,7 +247,7 @@ namespace MediaPlayer
         private int xPos;
         private int yPos;
         private static MainPage mp;
-
+        private bool fastStop;
 
         public MainPage()
         {
@@ -294,6 +294,11 @@ namespace MediaPlayer
 
         // Play the media.
 
+        private void ffIncrement(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            mediaPlayer.MediaPlayer.PlaybackSession.Position = mediaPlayer.MediaPlayer.PlaybackSession.Position.Add(
+                                   new TimeSpan(0, 0, 5));
+        }
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -349,6 +354,7 @@ namespace MediaPlayer
                                 playCommand = true;
                                 pauseCommand = false;
                                 voicePause = false;
+                                fastStop = true;
                             }
                             else if (myCommands.FirstOrDefault() == "pause")
                             {
@@ -358,6 +364,33 @@ namespace MediaPlayer
                                 pauseCommand = true;
                                 playCommand = false;
                                 voicePause = true;
+                                fastStop = true;
+                            }
+                            if (myCommands.FirstOrDefault() == "fastForward")
+                            {
+                                // mediaPlayer.MediaPlayer.StepForwardOneFrame();
+                                fastStop = false;
+
+                                aTimer.Interval = 1000;
+                                // Hook up the Elapsed event for the timer. 
+                                // aTimer.Elapsed += OnTimedEvent;
+
+                                aTimer.Elapsed += ffIncrement;
+
+                                //ffcounter = 0;
+                                
+                                // Have the timer fire repeated events (true is the default)
+                                aTimer.AutoReset = true;
+
+                                // Start the timer
+                                aTimer.Enabled = true;
+                                
+
+                                // mediaPlayer.MediaPlayer.Position = MediaPlayer.MediaElement.Position.Add(
+                                    // new TimeSpan(0, 0, 5));
+
+                                //mediaPlayer.MediaPlayer.MediaElement.Position = mediaPlayer.MediaPlayer.MediaElement.Position.Add(new TimeSpan(0, 0, 5));
+
                             }
                         }
                         if (srr.SemanticInterpretation.Properties.TryGetValue(
@@ -384,7 +417,7 @@ namespace MediaPlayer
                             OnMakeMove();
                         }
 
-                    } // end if srr.confidencce
+                    }
 
 
                     var messageDialog = new Windows.UI.Popups.MessageDialog(
