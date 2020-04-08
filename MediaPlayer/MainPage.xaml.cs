@@ -75,15 +75,6 @@ namespace MediaPlayer
             }));
             await messageDialog.ShowAsync();
         }
-        private async void btnCamera_Click(object sender, RoutedEventArgs e)
-        {
-            _mediaCapture = new MediaCapture();
-            await _mediaCapture.InitializeAsync();
-            cePreview.Source = _mediaCapture;
-            await _mediaCapture.StartPreviewAsync();
-            detectFaces_Click(sender, e);
-            timedCommands();
-        }
 
         private async void detectFaces_Click(object sender, RoutedEventArgs e)
         {
@@ -174,7 +165,6 @@ namespace MediaPlayer
                     mediaPlayer.MediaPlayer.Pause();
                     pauseCommand = true;
                     playCommand = false;
-                    fastStop = true;
                     stateChange++;
                     Debug.WriteLine("stateChange: " + stateChange);
 
@@ -184,7 +174,6 @@ namespace MediaPlayer
                     mediaPlayer.MediaPlayer.Play();
                     playCommand = true;
                     pauseCommand = false;
-                    fastStop = true;
                     stateChange++;
                     Debug.WriteLine("stateChange: " + stateChange);
                 }
@@ -247,7 +236,6 @@ namespace MediaPlayer
         private int xPos;
         private int yPos;
         private static MainPage mp;
-        private bool fastStop;
 
         public MainPage()
         {
@@ -259,13 +247,14 @@ namespace MediaPlayer
             mp = this;
         }
 
-        public MediaElement MyMedia
-        {
-            get { return media; }
-        }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            _mediaCapture = new MediaCapture();
+            await _mediaCapture.InitializeAsync();
+            cePreview.Source = _mediaCapture;
+            await _mediaCapture.StartPreviewAsync();
+            detectFaces_Click(sender, e);
+            timedCommands();
             await SetLocalMedia();
         }
 
@@ -290,14 +279,6 @@ namespace MediaPlayer
                 mediaPlayer.MediaPlayer.Play();
 
             }
-        }
-
-        // Play the media.
-
-        private void ffIncrement(Object source, System.Timers.ElapsedEventArgs e)
-        {
-            mediaPlayer.MediaPlayer.PlaybackSession.Position = mediaPlayer.MediaPlayer.PlaybackSession.Position.Add(
-                                   new TimeSpan(0, 0, 5));
         }
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -327,14 +308,7 @@ namespace MediaPlayer
                 {
                     SpeechRecognitionResult srr = await speechRecognizer.RecognizeAsync();
 
-                    // try and parse to get some meaningful input
-                    // following crashes without an if to check
-                    //string myCommand = 
-                    //        srr.SemanticInterpretation.Properties["command"].Single();
 
-                    // safer way to get the information 
-                    // Action - delegate method
-                    // set up a dictionary of string/Action pairs
                     string myCommand = "No command found";
                     if ((srr.Confidence == SpeechRecognitionConfidence.High) ||
                         (srr.Confidence == SpeechRecognitionConfidence.Medium) ||
@@ -354,7 +328,6 @@ namespace MediaPlayer
                                 playCommand = true;
                                 pauseCommand = false;
                                 voicePause = false;
-                                fastStop = true;
                             }
                             else if (myCommands.FirstOrDefault() == "pause")
                             {
@@ -364,57 +337,17 @@ namespace MediaPlayer
                                 pauseCommand = true;
                                 playCommand = false;
                                 voicePause = true;
-                                fastStop = true;
                             }
                             if (myCommands.FirstOrDefault() == "fastForward")
                             {
-                                // mediaPlayer.MediaPlayer.StepForwardOneFrame();
-                                fastStop = false;
-
-                                aTimer.Interval = 1000;
-                                // Hook up the Elapsed event for the timer. 
-                                // aTimer.Elapsed += OnTimedEvent;
-
-                                aTimer.Elapsed += ffIncrement;
-
-                                //ffcounter = 0;
-                                
-                                // Have the timer fire repeated events (true is the default)
-                                aTimer.AutoReset = true;
-
-                                // Start the timer
-                                aTimer.Enabled = true;
-                                
-
-                                // mediaPlayer.MediaPlayer.Position = MediaPlayer.MediaElement.Position.Add(
-                                    // new TimeSpan(0, 0, 5));
-
-                                //mediaPlayer.MediaPlayer.MediaElement.Position = mediaPlayer.MediaPlayer.MediaElement.Position.Add(new TimeSpan(0, 0, 5));
-
+                                mediaPlayer.MediaPlayer.PlaybackSession.Position = mediaPlayer.MediaPlayer.PlaybackSession.Position.Add(
+                                  new TimeSpan(0, 0, 30));
                             }
-                        }
-                        if (srr.SemanticInterpretation.Properties.TryGetValue(
-                                    "player",
-                                    out myCommands) == true)
-                        {
-                            Player = myCommands.FirstOrDefault();
-                        }
-                        if (srr.SemanticInterpretation.Properties.TryGetValue(
-                                    "row",
-                                    out myCommands) == true)
-                        {
-                            xPos = Convert.ToInt32(myCommands.FirstOrDefault());
-                        }
-                        if (srr.SemanticInterpretation.Properties.TryGetValue(
-                                    "col",
-                                    out myCommands) == true)
-                        {
-                            yPos = Convert.ToInt32(myCommands.FirstOrDefault());
-                        }
-
-                        if (Player != "")
-                        {
-                            OnMakeMove();
+                            if (myCommands.FirstOrDefault() == "rewind")
+                            {
+                                mediaPlayer.MediaPlayer.PlaybackSession.Position = mediaPlayer.MediaPlayer.PlaybackSession.Position.Add(
+                                  new TimeSpan(0, 0, -30));
+                            }
                         }
 
                     }
@@ -422,7 +355,7 @@ namespace MediaPlayer
 
                     var messageDialog = new Windows.UI.Popups.MessageDialog(
                             myCommand, "Spoken Text");
-                    await messageDialog.ShowAsync();
+                    //await messageDialog.ShowAsync();
 
                 }
             }
@@ -434,13 +367,6 @@ namespace MediaPlayer
             }
         }
 
-        private async void OnMakeMove()
-        {
-            var messageDialog = new Windows.UI.Popups.MessageDialog(
-                    "Moving " + Player + " to Row: " + xPos + ", Column: " + yPos,
-                    "Spoken Text");
-            await messageDialog.ShowAsync();
-        }
     }
 }
 

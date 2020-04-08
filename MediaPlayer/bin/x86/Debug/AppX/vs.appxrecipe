@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-04-08T15:25:02.128</Modified>
+      <Modified>2020-04-08T15:56:11.906</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.exe">
       <PackagePath>entrypoint\MediaPlayer.exe</PackagePath>
-      <Modified>2020-04-08T15:25:01.262</Modified>
+      <Modified>2020-04-08T15:56:11.241</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll">
       <PackagePath>CommonServiceLocator.dll</PackagePath>
@@ -64,7 +64,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\grammar.xml">
       <PackagePath>grammar.xml</PackagePath>
-      <Modified>2020-03-28T13:24:36.470</Modified>
+      <Modified>2020-04-08T15:43:07.169</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -106,19 +106,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MediaPlayer.xr.xml">
       <PackagePath>MediaPlayer.xr.xml</PackagePath>
-      <Modified>2020-04-07T21:59:21.485</Modified>
+      <Modified>2020-04-08T15:56:11.042</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-04-08T15:25:01.032</Modified>
+      <Modified>2020-04-08T15:56:11.046</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-04-08T15:25:01.032</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Voice.xbf">
-      <PackagePath>Voice.xbf</PackagePath>
-      <Modified>2020-04-08T15:25:01.033</Modified>
+      <Modified>2020-04-08T15:56:11.046</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -126,11 +122,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-04-06T14:26:52.131</Modified>
+      <Modified>2020-04-08T15:56:11.447</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\james\source\repos\GestureUIProject\MediaPlayer\bin\x86\Debug\Core\MediaPlayer.exe">
       <PackagePath>MediaPlayer.exe</PackagePath>
-      <Modified>2020-04-08T15:25:02.116</Modified>
+      <Modified>2020-04-08T15:56:11.901</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
