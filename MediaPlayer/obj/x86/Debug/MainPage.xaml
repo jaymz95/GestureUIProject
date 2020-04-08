@@ -19,13 +19,14 @@
         </Grid.RowDefinitions>
 
         <MediaElement x:ConnectionId='2' x:Name="media" x:FieldModifier="Public">
-            
+
         </MediaElement>
 
         <CaptureElement x:ConnectionId='3' Name="cePreview" Stretch="Uniform" Grid.Row="0" />
         <Canvas x:ConnectionId='4' x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5">
             <Button x:ConnectionId='8' x:Name="btnCamera"                         >Turn on Camera</Button>
+            <Button x:ConnectionId='9' x:Name="faceDetectOff"                            >Face Detecction On/Off</Button>
         </StackPanel>
 
         <MediaPlayerElement x:ConnectionId='5' x:Name="mediaSimple"

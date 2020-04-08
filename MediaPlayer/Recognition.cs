@@ -27,9 +27,6 @@ namespace MediaPlayer
             MediaElement media = page.MyMedia;
 
 
-            media.AutoPlay = true;
-            media.SetSource(synthesisStream, synthesisStream.ContentType);
-            media.Play();
         }
     }
 }

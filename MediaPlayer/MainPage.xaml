@@ -19,13 +19,14 @@
         </Grid.RowDefinitions>
 
         <MediaElement x:Name="media" x:FieldModifier="Public">
-            
+
         </MediaElement>
 
         <CaptureElement Name="cePreview" Stretch="Uniform" Grid.Row="0" />
         <Canvas x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5">
             <Button x:Name="btnCamera" Click="btnCamera_Click" >Turn on Camera</Button>
+            <Button x:Name="faceDetectOff" Click="faceDetectOff_Click">Face Detecction On/Off</Button>
         </StackPanel>
 
         <MediaPlayerElement x:Name="mediaSimple"

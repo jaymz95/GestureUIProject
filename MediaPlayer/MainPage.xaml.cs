@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using Windows.Foundation;
 using Windows.Graphics.Imaging;
@@ -16,6 +17,7 @@ using Windows.Media.SpeechSynthesis;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -31,7 +33,7 @@ namespace MediaPlayer
     /// 
 
     
-        public sealed partial class MainPage : Page
+    public sealed partial class MainPage : Page
     {
 
         private FaceDetectionEffect _faceDetectionEffect;
@@ -39,6 +41,7 @@ namespace MediaPlayer
         private IMediaEncodingProperties _previewProperties;
         //public var file;#
         private IStorageFile file;
+        private IStorageFile ile;
         private bool pauseButton = false;
         private bool pauseCommand = false;
         private bool playCommand = false;
@@ -50,11 +53,29 @@ namespace MediaPlayer
         private static int counter = 0;
         private static SpeechSynthesizer synthesizer;
         private static SpeechSynthesisStream synthesisStream;
-        //private static MainPage m = new MainPage();
-        private static MediaElement mediaEl;
         private static bool errorFaceDetect = false;
+        private static bool faceDetect = true;
 
 
+        private async void faceDetectOff_Click(object sender, RoutedEventArgs e)
+        {
+            
+            media.AutoPlay = true;
+            media.SetSource(synthesisStream, synthesisStream.ContentType);
+            media.Play();
+            var messageDialog = new Windows.UI.Popups.MessageDialog(
+                            "Would you like to turn off face detection controls to Play and Pause?");
+            messageDialog.Commands.Add(new UICommand("Yes", (command) =>
+            {
+                faceDetect = false;
+            }));
+
+            messageDialog.Commands.Add(new UICommand("No", (command) =>
+            {
+                faceDetect = true;
+            }));
+            await messageDialog.ShowAsync();
+        }
         private async void btnCamera_Click(object sender, RoutedEventArgs e)
         {
             _mediaCapture = new MediaCapture();
@@ -63,18 +84,6 @@ namespace MediaPlayer
             await _mediaCapture.StartPreviewAsync();
             detectFaces_Click(sender, e);
             timedCommands();
-            //synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
-
-            // Create a stream from the text. This will be played using a media element.
-            //synthesisStream = await synthesizer.SynthesizeTextToStreamAsync("Would you like to turn off face detection controls to Play and Pause?");
-            //synthesisStream = synthesizer.SynthesizeTextToStreamAsync("e");
-            if(errorFaceDetect == true)
-            {
-
-                media.AutoPlay = true;
-                media.SetSource(synthesisStream, synthesisStream.ContentType);
-                media.Play();
-            }
         }
 
         private async void detectFaces_Click(object sender, RoutedEventArgs e)
@@ -84,10 +93,12 @@ namespace MediaPlayer
             faceDetectionDefinition.SynchronousDetectionEnabled = false;
             _faceDetectionEffect = (FaceDetectionEffect)await
             _mediaCapture.AddVideoEffectAsync(faceDetectionDefinition,
-              MediaStreamType.VideoPreview);
+                MediaStreamType.VideoPreview);
             _faceDetectionEffect.FaceDetected += FaceDetectionEffect_FaceDetected;
             _faceDetectionEffect.DesiredDetectionInterval = TimeSpan.FromMilliseconds(33);
             _faceDetectionEffect.Enabled = true;
+
+            
         }
 
         private async void FaceDetectionEffect_FaceDetected(
@@ -103,90 +114,53 @@ namespace MediaPlayer
 
         public static void timedCommands()
         {
-
             aTimer.Interval = 1000;
             // Hook up the Elapsed event for the timer. 
-            aTimer.Elapsed += OnTimedEvent;
+            //aTimer.Elapsed += OnTimedEvent;
+
+            aTimer.Elapsed += (sender, e) => OnTimedEvent(sender, e);
+
+            if (counter >= 30)
+            {
+                // or whatever your limit is
+                if (stateChange >= 5)
+                {
+                    errorFaceDetect = true;
+                }
+                stateChange = 0;
+                counter = 0;
+            }
 
             // Have the timer fire repeated events (true is the default)
             aTimer.AutoReset = true;
 
             // Start the timer
             aTimer.Enabled = true;
-
-            Console.WriteLine("Press the Enter key to exit the program at any time... ");
-            Console.ReadLine();
-
-            
         }
 
-        private async static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
             counter++;
             if (counter >= 30)
             {
                 // or whatever your limit is
                 if (stateChange >= 5)
                 {
-                    errorFaceDetect = true ;
-                    // output assistant message
+                    errorFaceDetect = true;
                     Debug.WriteLine("ERRRRRRRRRRRROOOORRRRRRRRRRRRRRRRRRR");
-                    // The media object for controlling and playing audio.
-
-                    //synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
-
-                    // Create a stream from the text. This will be played using a media element.
-                    //synthesisStream = await synthesizer.SynthesizeTextToStreamAsync("g");
-
-                    //MediaElement media = ;
-                    // Set the source and start playing the synthesized audio stream.
-                    //Application.Current = new Recognition();
-                    //Application.Current.MainPage = new Recognition();
-                    
-                    //var frame = (Frame)Window.Current.Content;
-                    //var page = (MainPage)frame.Content;
-                    //var page = (MainPage)frame.Content;
-                    //MediaElement media = page.MyMedia;
-
-                    //var result = AsyncContext.Run(jjAsync);
-                    //jjAsync();
-                    //synthesizer.SetOutputToDefaultAudioDevice();
-                    //synthesizer.SynthesizeTextToStreamAsync("stop stop stop");
-                    //var frame = (Frame)Window.Current.Content;
-
-                    //Recognition foo = new Recognition();
-                    //foo.jjAsync(synthesisStream, frame);
-                    //MediaElement media = ;
-                    // Set the source and start playing the synthesized audio stream.
-                    //media.AutoPlay = true;
-                    //media.SetSource(synthesisStream, synthesisStream.ContentType);
-                    //media.Play();
-
-                    //MainPage frm1 = new MainPage();
-                    //frm1.jjAsync();
+                    //var mp = (MainPage)frame.Content;
+                    //mp.
+                    if (errorFaceDetect == true)
+                    {
+                        
+                    }
 
                 }
                 stateChange = 0;
                 counter = 0;
             }
-            Debug.WriteLine("Counter: "+counter);
+            Debug.WriteLine("Counter: " + counter);
         }
-
-        private void jjAsync()
-        {
-            //var synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
-
-            // Create a stream from the text. This will be played using a media element.
-            //SpeechSynthesisStream synthesisStream = await synthesizer.SynthesizeTextToStreamAsync("stop stop stop");
-
-            //MediaElement media = ;
-            // Set the source and start playing the synthesized audio stream.
-            media.AutoPlay = true;
-            media.SetSource(synthesisStream, synthesisStream.ContentType);
-            media.Play();
-        }
-
 
 
         private void DrawFaceBoxes(IReadOnlyList<DetectedFace> detectedFaces)
@@ -195,7 +169,7 @@ namespace MediaPlayer
 
             //MediaPlaybackSession playbackSession = sender as MediaPlaybackSession;
             //Debug.WriteLine(detectedFaces.Count);
-            if (file != null)
+            if (file != null && faceDetect == true)
             {
                 if (detectedFaces.Count <= 0 && playCommand == true)// && mediaPlayer.MediaPlayer.CurrentStateChanged += MediaElementState.Paused)
                 {
@@ -203,7 +177,7 @@ namespace MediaPlayer
                     pauseCommand = true;
                     playCommand = false;
                     stateChange++;
-                    Debug.WriteLine(stateChange);
+                    Debug.WriteLine("stateChange: " + stateChange);
 
                 }
                 else if (detectedFaces.Count > 0 && playCommand == false && voicePause == false)
@@ -212,25 +186,8 @@ namespace MediaPlayer
                     playCommand = true;
                     pauseCommand = false;
                     stateChange++;
-                    Debug.WriteLine(stateChange);
+                    Debug.WriteLine("stateChange: " + stateChange);
                 }
-            }
-
-            for (int i = 0; i < detectedFaces.Count; i++)
-            {
-                var face = detectedFaces[i];
-
-                var faceBounds = face.FaceBox;
-                Rectangle faceHighlightRectangle = new Rectangle()
-                {
-                    Height = faceBounds.Height,
-                    Width = faceBounds.Width
-                };
-                Canvas.SetLeft(faceHighlightRectangle, faceBounds.X);
-                Canvas.SetTop(faceHighlightRectangle, faceBounds.Y);
-                faceHighlightRectangle.StrokeThickness = 2;
-                faceHighlightRectangle.Stroke = new SolidColorBrush(Colors.Red);
-                cvsFaceOverlay.Children.Add(faceHighlightRectangle);
             }
         }
 
@@ -289,6 +246,7 @@ namespace MediaPlayer
         private string Player;
         private int xPos;
         private int yPos;
+        private static MainPage mp;
 
 
         public MainPage()
@@ -298,8 +256,7 @@ namespace MediaPlayer
             xPos = 0;
             yPos = 0;
             this.Loaded += MainPage_Loaded;
-            //mediaEl = this.MyMedia;
-
+            mp = this;
         }
 
         public MediaElement MyMedia
@@ -388,7 +345,7 @@ namespace MediaPlayer
                             {
                                 mediaPlayer.MediaPlayer.Play();
                                 stateChange++;
-                                Debug.WriteLine(stateChange);
+                                Debug.WriteLine("stateChange: " + stateChange);
                                 playCommand = true;
                                 pauseCommand = false;
                                 voicePause = false;
@@ -397,7 +354,7 @@ namespace MediaPlayer
                             {
                                 mediaPlayer.MediaPlayer.Pause();
                                 stateChange++;
-                                Debug.WriteLine(stateChange);
+                                Debug.WriteLine("stateChange: " + stateChange);
                                 pauseCommand = true;
                                 playCommand = false;
                                 voicePause = true;
