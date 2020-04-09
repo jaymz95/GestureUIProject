@@ -16,22 +16,18 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement x:Name="media" x:FieldModifier="Public">
-
-        </MediaElement>
+        <!-- SpeechSynthesizer element voice popup (Turn on/off Face Recognition) -->
+        <MediaElement x:Name="media" x:FieldModifier="Public"></MediaElement>
 
         <CaptureElement Name="cePreview" Stretch="Uniform" Grid.Row="0" Visibility="Collapsed" />
         <Canvas x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
 
-        <MediaPlayerElement x:Name="mediaSimple"
-                    Source="ms-appx:///Videos/video1.mp4"
-                    Width="800" AutoPlay="True" Grid.Row="0" />
-        
+        <!-- Media Player -->
         <MediaPlayerElement x:Name="mediaPlayer"
                     Source="ms-appx:///Videos/video1.mp4"
                     AutoPlay="False"
                     AreTransportControlsEnabled="True" Grid.Row="0" />
-
+        <!-- Buttons -->
         <Button x:Name="faceDetectOff" Click="faceDetectOff_Click" Grid.Row="1" HorizontalAlignment="Left">Face Detecction On/Off</Button>
         <Button Content="Choose file" Click="Button_Click" Grid.Row="1" HorizontalAlignment="Center" />
 

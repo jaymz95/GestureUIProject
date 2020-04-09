@@ -26,7 +26,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Canvas" />
     <RootType FullName="Windows.UI.Xaml.Controls.MediaPlayerElement">
       <RootProperty Name="Source" />
-      <RootProperty Name="Width" />
       <RootProperty Name="AutoPlay" />
       <RootProperty Name="AreTransportControlsEnabled" />
     </RootType>

@@ -16,24 +16,20 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement x:ConnectionId='2' x:Name="media" x:FieldModifier="Public">
-
-        </MediaElement>
+        <!-- SpeechSynthesizer element voice popup (Turn on/off Face Recognition) -->
+        <MediaElement x:ConnectionId='2' x:Name="media" x:FieldModifier="Public"></MediaElement>
 
         <CaptureElement x:ConnectionId='3' Name="cePreview" Stretch="Uniform" Grid.Row="0" Visibility="Collapsed" />
         <Canvas x:ConnectionId='4' x:Name="cvsFaceOverlay" Grid.Row="0" ></Canvas>
 
-        <MediaPlayerElement x:ConnectionId='5' x:Name="mediaSimple"
-                    Source="ms-appx:///Videos/video1.mp4"
-                    Width="800" AutoPlay="True" Grid.Row="0" />
-        
-        <MediaPlayerElement x:ConnectionId='6' x:Name="mediaPlayer"
+        <!-- Media Player -->
+        <MediaPlayerElement x:ConnectionId='5' x:Name="mediaPlayer"
                     Source="ms-appx:///Videos/video1.mp4"
                     AutoPlay="False"
                     AreTransportControlsEnabled="True" Grid.Row="0" />
-
-        <Button x:ConnectionId='7' x:Name="faceDetectOff"                             Grid.Row="1" HorizontalAlignment="Left">Face Detecction On/Off</Button>
-        <Button x:ConnectionId='8' Content="Choose file"                      Grid.Row="1" HorizontalAlignment="Center" />
+        <!-- Buttons -->
+        <Button x:ConnectionId='6' x:Name="faceDetectOff"                             Grid.Row="1" HorizontalAlignment="Left">Face Detecction On/Off</Button>
+        <Button x:ConnectionId='7' Content="Choose file"                      Grid.Row="1" HorizontalAlignment="Center" />
 
     </Grid>
     
