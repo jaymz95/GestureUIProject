@@ -11,7 +11,6 @@ using Windows.Graphics.Imaging;
 using Windows.Media.Capture;
 using Windows.Media.Core;
 using Windows.Media.FaceAnalysis;
-using Windows.Media.MediaProperties;
 using Windows.Media.SpeechRecognition;
 using Windows.Media.SpeechSynthesis;
 using Windows.Storage;
@@ -30,7 +29,6 @@ namespace MediaPlayer
 
         private FaceDetectionEffect _faceDetectionEffect;
         private MediaCapture _mediaCapture;
-        private IMediaEncodingProperties _previewProperties;
         private IStorageFile file;
         private bool playCommand = false;
         private bool voicePause = false;
@@ -216,8 +214,7 @@ namespace MediaPlayer
                     // Play/Pause/FastForward/Rewind Voice Command if statement
                     string myCommand = "No command found";
                     if ((srr.Confidence == SpeechRecognitionConfidence.High) ||
-                        (srr.Confidence == SpeechRecognitionConfidence.Medium) ||
-                        (srr.Confidence == SpeechRecognitionConfidence.Low))
+                        (srr.Confidence == SpeechRecognitionConfidence.Medium))
                     {
                         IReadOnlyList<string> myCommands;
                         if (srr.SemanticInterpretation.Properties.TryGetValue(
